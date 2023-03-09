@@ -13,7 +13,7 @@ import numpy as np
 Run the script:
 
 python3 predict_single.py \
---ckpt out/ckpt/G_epoch110.pth \
+--ckpt /data/nieshen-cx/Sinogram-Inpainting/out/ckpt/G_epoch9.pth \
 --testImage ../../Toy-Dataset/Ground_Truth_sinogram/C/47.png
 '''
 

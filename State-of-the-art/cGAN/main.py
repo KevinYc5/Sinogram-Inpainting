@@ -22,11 +22,11 @@ CUDA_VISIBLE_DEVICES=0 python3 main.py \
 '''
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--datadir', required=False, default='data', help='directory to full-view (target) sinogram dataset')
-parser.add_argument('--outdir', required=False, default='out', help='output dir')
+parser.add_argument('--datadir', required=False, default='/data/nieshen-cx/Sinogram-Inpainting/Data/image_512_nested', help='directory to full-view (target) sinogram dataset')
+parser.add_argument('--outdir', required=False, default='/data/nieshen-cx/Sinogram-Inpainting/out', help='output dir')
 parser.add_argument('--height', required=False, type=int, default=320, help='the height of the input image to network. Cannot change for now.')
 parser.add_argument('--width', required=False, type=int, default=180, help='the width of the input image to network. Cannot change for now.')
-parser.add_argument('--epochs', type=int, default=10, help='Number of epochs', dest='epochs')
+parser.add_argument('--epochs', type=int, default=150, help='Number of epochs', dest='epochs')
 parser.add_argument('-b', '--batchSize', metavar='B', type=int, nargs='?', default=64, help='Batch size')
 parser.add_argument('-l', '--learning-rate', metavar='LR', type=float, nargs='?', default=0.1, help='Learning rate', dest='lr')
 parser.add_argument('--loadG', dest='loadG', type=str, default=False, help='Load model G from a .pth file')
@@ -73,7 +73,7 @@ netD = nn.DataParallel(netD)
 # print(netG)
 # print(netD)
 
-if args.load >= 0:
+if args.load > 0:
     path = os.path.join(args.outdir, 'ckpt/G_epoch'+str(args.load)+'.pth')
     netG.load_state_dict(
         torch.load(path, map_location=device)
